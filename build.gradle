@@ -31,6 +31,18 @@ repositories {
 }
 
 dependencies {
+    // 컴파일
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok') // 롬복은 프로젝트마다 설정해줘야 함.
+    // 스프링 부트용 Spring Data JPA 추상화 라이브러리
+    // 스프링 부트 버전에 맞춰 자동으로  JPA 라이브러리 버전 관리해줌
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    // 인메모리 관계형 DB
+    // 프로젝트 의존성만으로 별도 설치 없이 관리 가능
+    // 메모리에서 실행되어 앱 재시작마다 초기화됨
+    // 테스트용으로 많이 이용
+    // JPA의 테스트, 로컬 환경 구동에서 사용
+    compile('com.h2database:h2')
+    // 테스트
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
