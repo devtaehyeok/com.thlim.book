@@ -1,12 +1,14 @@
 package com.thlim.book.springboot.domain.posts;
 
-import com.thlim.book.springboot.web.PostsResponseDto;
-import com.thlim.book.springboot.web.PostsUpdateRequestDto;
 import com.thlim.book.springboot.web.dto.PostSaveRequestDto;
+import com.thlim.book.springboot.web.dto.PostsResponseDto;
+import com.thlim.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -37,5 +39,16 @@ public class PostService {
     public PostsResponseDto findById(Long id) {
         Posts entity = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id + "= id에 해당하는 게시글이 없습니다."));
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException(String.format("해당 ID={0}의 게시물이 없습니다.", id)));
+        postsRepository.delete(posts);
     }
 }

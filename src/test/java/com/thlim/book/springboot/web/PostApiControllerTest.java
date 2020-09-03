@@ -3,6 +3,7 @@ package com.thlim.book.springboot.web;
 import com.thlim.book.springboot.domain.posts.Posts;
 import com.thlim.book.springboot.domain.posts.PostsRepository;
 import com.thlim.book.springboot.web.dto.PostSaveRequestDto;
+import com.thlim.book.springboot.web.dto.PostsUpdateRequestDto;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.Autowired;
